@@ -1,7 +1,5 @@
 package com.skalicky.springdata.mongodb.helloworld.service;
 
-import java.util.List;
-
 import com.skalicky.springdata.mongodb.helloworld.domain.User;
 
 /**
@@ -16,6 +14,4 @@ public interface UserService {
     void updatePasswordOf(User user);
 
     void remove(User user);
-
-    List<User> findAll();
 }

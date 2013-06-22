@@ -1,8 +1,7 @@
 package com.skalicky.springdata.mongodb.helloworld.service;
 
 import static org.junit.Assert.*;
-
-import java.util.List;
+import static org.springframework.data.mongodb.core.query.Query.*;
 
 import javax.inject.Inject;
 
@@ -49,7 +48,7 @@ public class UserServiceImplTestWithPrefilledDb {
     @Test
     public void testUpdatePasswordOf() throws Exception {
         // Prepares an input.
-        Query searchQuery = new Query(Criteria.where(User.CollectionKey.USERNAME.getDbLabel()).is(USERNAME_1));
+        Query searchQuery = query(Criteria.where(User.CollectionKey.USERNAME.getDbLabel()).is(USERNAME_1));
         User originalUser = this.mongo.findOne(searchQuery, User.class);
         String newPassword = "new password";
         originalUser.setPassword(newPassword);
@@ -65,7 +64,7 @@ public class UserServiceImplTestWithPrefilledDb {
     @Test
     public void testRemove() throws Exception {
         // Prepares an input.
-        Query searchQuery = new Query(Criteria.where(User.CollectionKey.USERNAME.getDbLabel()).is(USERNAME_1));
+        Query searchQuery = query(Criteria.where(User.CollectionKey.USERNAME.getDbLabel()).is(USERNAME_1));
         User user = this.mongo.findOne(searchQuery, User.class);
 
         // Calls the tested method.
@@ -73,14 +72,5 @@ public class UserServiceImplTestWithPrefilledDb {
 
         // Checks the result.
         assertEquals(null, this.mongo.findOne(searchQuery, User.class));
-    }
-
-    @Test
-    public void testFindAll() throws Exception {
-        // Calls the tested method.
-        List<User> users = this.userService.findAll();
-
-        // Checks the result.
-        assertEquals(2, users.size());
     }
 }

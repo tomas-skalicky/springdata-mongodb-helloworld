@@ -1,6 +1,7 @@
 package com.skalicky.springdata.mongodb.helloworld.service;
 
 import static org.junit.Assert.*;
+import static org.springframework.data.mongodb.core.query.Query.*;
 
 import javax.inject.Inject;
 
@@ -47,7 +48,7 @@ public class UserServiceImplTestWithEmptyDb {
         this.userService.insert(user);
 
         // Checks the result.
-        Query searchQuery = new Query(Criteria.where(User.CollectionKey.USERNAME.getDbLabel()).is(username));
+        Query searchQuery = query(Criteria.where(User.CollectionKey.USERNAME.getDbLabel()).is(username));
         User storedUser = this.mongo.findOne(searchQuery, User.class);
         assertFalse(StringUtils.isEmpty(storedUser.getId()));
         assertEquals(password, storedUser.getPassword());
@@ -64,7 +65,7 @@ public class UserServiceImplTestWithEmptyDb {
         this.userService.insertOrUpdate(user);
 
         // Checks the result.
-        Query searchQuery = new Query(Criteria.where(User.CollectionKey.USERNAME.getDbLabel()).is(username));
+        Query searchQuery = query(Criteria.where(User.CollectionKey.USERNAME.getDbLabel()).is(username));
         User storedUser = this.mongo.findOne(searchQuery, User.class);
         assertFalse(StringUtils.isEmpty(storedUser.getId()));
         assertEquals(password, storedUser.getPassword());

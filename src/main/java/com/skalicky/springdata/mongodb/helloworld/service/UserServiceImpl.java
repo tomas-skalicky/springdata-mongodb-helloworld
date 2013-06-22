@@ -1,7 +1,6 @@
 package com.skalicky.springdata.mongodb.helloworld.service;
 
-import java.util.Arrays;
-import java.util.List;
+import static org.springframework.data.mongodb.core.query.Query.*;
 
 import javax.inject.Inject;
 
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePasswordOf(User user) {
         this.log.debug("updatePasswordOf: " + user);
-        Query searchQuery = new Query(Criteria.where(User.CollectionKey.ID.getDbLabel()).is(user.getId()));
+        Query searchQuery = query(Criteria.where(User.CollectionKey.ID.getDbLabel()).is(user.getId()));
         Update update = Update.update(User.CollectionKey.PASSWORD.getDbLabel(), user.getPassword());
         this.mongo.updateFirst(searchQuery, update, User.class);
     }
@@ -51,12 +50,5 @@ public class UserServiceImpl implements UserService {
     public void remove(User user) {
         this.log.debug("remove: " + user);
         this.mongo.remove(user);
-    }
-
-    @Override
-    public List<User> findAll() {
-        List<User> users = this.mongo.findAll(User.class);
-        this.log.debug("findAll: " + Arrays.toString(users.toArray()));
-        return users;
     }
 }

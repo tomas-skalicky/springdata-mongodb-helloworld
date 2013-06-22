@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.mongodb.MongoClient;
 
@@ -14,6 +15,7 @@ import com.mongodb.MongoClient;
  */
 @Configuration
 @ComponentScan(basePackages = SpringMongoConfig.BASE_APP_PACKAGE)
+@EnableMongoRepositories(basePackages = SpringMongoConfig.BASE_APP_PACKAGE)
 public class SpringMongoConfig {
 
     static final String BASE_APP_PACKAGE = "com.skalicky.springdata.mongodb.helloworld";
