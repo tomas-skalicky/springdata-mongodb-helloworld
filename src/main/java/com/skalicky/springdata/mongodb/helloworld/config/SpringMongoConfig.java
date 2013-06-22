@@ -14,9 +14,11 @@ import com.mongodb.MongoClient;
 @Configuration
 public class SpringMongoConfig {
 
+    private static final String DATABASE_NAME = "helloWorld-testDb";
+
     @Bean
     public MongoDbFactory mongoDbFactory() throws Exception {
-        return new SimpleMongoDbFactory(new MongoClient(), "helloWorld-testDb");
+        return new SimpleMongoDbFactory(new MongoClient(), DATABASE_NAME);
     }
 
     @Bean
