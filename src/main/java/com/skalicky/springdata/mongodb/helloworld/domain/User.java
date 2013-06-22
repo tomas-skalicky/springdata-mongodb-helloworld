@@ -28,4 +28,20 @@ public class User {
     @Getter
     @Setter
     private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public enum CollectionKey {
+        ID("id"), USERNAME("username"), PASSWORD("password");
+
+        @Getter
+        private final String dbLabel;
+
+        private CollectionKey(String dbLabel) {
+            this.dbLabel = dbLabel;
+        }
+    }
 }

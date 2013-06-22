@@ -14,10 +14,10 @@ import com.mongodb.MongoClient;
  */
 @Configuration
 @ComponentScan(basePackages = SpringMongoConfig.BASE_APP_PACKAGE)
-public class SpringMongoConfig {
+public class SpringMongoTestConfig {
 
     static final String BASE_APP_PACKAGE = "com.skalicky.springdata.mongodb.helloworld";
-    public static final String DATABASE_NAME = "helloWorld-db";
+    public static final String DATABASE_NAME = "helloWorld-testDb";
 
     @Bean
     public MongoDbFactory mongoDbFactory() throws Exception {
